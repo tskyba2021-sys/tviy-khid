@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Твій Хід — ШІ для б'юті-майстрів</title>
+  <meta name="description" content="Онлайн-курс для б'юті-майстрів. Навчись використовувати ШІ для контенту, запису і комунікації за 3 тижні. Без коду. Без технічного досвіду.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♟</text></svg>">
+
+  <!-- Open Graph / Telegram / Viber share -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Твій Хід — ШІ для б'юті-майстрів">
+  <meta property="og:description" content="Пиши пости, відповідай клієнткам і заповнюй запис — автоматично. Без коду. За 3 тижні. Старт 13 жовтня · 4 250 ₴">
+  <meta property="og:image" content="https://tviy-khid.com/og-cover.jpg">
+  <meta property="og:url" content="https://tviy-khid.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0A0A0A;
+      --bg2:#141414;
+      --bg3:#1E1E1E;
+      --bg4:#2A2A2A;
+      --rose:#FF1A7E;
+      --rose-h:#FF4D9B;
+      --rose-deep:#FF1A7E;
+      --rose-pale:rgba(255,26,126,.10);
+      --ink:#FFFFFF;
+      --ink2:rgba(255,255,255,.78);
+      --ink3:rgba(255,255,255,.45);
+      --display:'Oswald',sans-serif;
+      --sans:'Montserrat',system-ui,sans-serif;
+      --script:'Montserrat',system-ui,sans-serif;
+      --gold-1:#C9A84C;
+      --gold-2:#F0D080;
+      --gold-3:#A8832A;
+      --gold-grad:linear-gradient(135deg,#A8832A 0%,#E8C96A 40%,#F5E09A 55%,#C9A84C 75%,#A8832A 100%)
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#0A0A0A;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65}
+    /* ── Глобальний mesh-gradient (фіксований) ── */
+    body::before{
+      content:'';position:fixed;inset:0;z-index:-10;pointer-events:none;
+      background:
+        radial-gradient(ellipse 75% 55% at 12% 18%,rgba(255,26,126,.13) 0%,transparent 62%),
+        radial-gradient(ellipse 65% 50% at 88% 52%,rgba(255,26,126,.08) 0%,transparent 58%),
+        radial-gradient(ellipse 70% 55% at 8% 82%,rgba(255,26,126,.06) 0%,transparent 55%),
+        radial-gradient(ellipse 55% 45% at 72% 90%,rgba(255,26,126,.10) 0%,transparent 60%),
+        #0A0A0A
+    }
+    /* ── Grain overlay (фіксований) ── */
+    body::after{
+      content:'';position:fixed;inset:0;z-index:-8;pointer-events:none;opacity:.032;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.68' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:220px 220px
+    }
+    #lp{width:100%;position:relative}
+    /* Контентна колонка — обмежує ширину тексту всередині секцій */
+    .content-wrap{max-width:860px;margin:0 auto}
+
+    /* ── EB Banner ── */
+    .eb-banner{background:linear-gradient(135deg,#1A0010 0%,rgba(255,26,126,.18) 100%);border-bottom:1px solid rgba(255,26,126,.2);padding:18px 28px}
+    .eb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+    .eb-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(249,200,218,.18);border:1px solid rgba(249,200,218,.4);padding:5px 14px;border-radius:999px}
+    .eb-badge-dot{width:6px;height:6px;border-radius:50%;background:#F9C8DA;animation:blink 2s infinite;flex-shrink:0}
+    .eb-badge-text{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#F9C8DA;font-family:var(--sans)}
+    .eb-deadline{font-size:12px;color:rgba(255,255,255,.6);font-family:var(--sans)}
+    .eb-deadline strong{color:#F9C8DA;font-weight:700}
+    .eb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.10);border-radius:10px;overflow:hidden;margin-bottom:14px}
+    .eb-col{background:rgba(255,26,126,.08);padding:14px 16px}
+    .eb-col:first-child{background:rgba(255,26,126,.12)}
+    .eb-col-icon{font-size:14px;margin-bottom:5px;color:#F9C8DA;display:block}
+    .eb-col-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;line-height:1.25;font-family:var(--sans)}
+    .eb-col-sub{font-size:11px;color:rgba(255,255,255,.6);line-height:1.45;font-family:var(--sans)}
+    .eb-price{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+    .eb-price-now{font-family:var(--display);font-size:22px;font-weight:700;font-style:normal;letter-spacing:.04em;line-height:1}
+    .eb-price-old{font-size:13px;color:rgba(255,255,255,.4);text-decoration:line-through;font-family:var(--sans)}
+    .eb-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .eb-spots{font-size:12px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:8px;font-family:var(--sans)}
+    .eb-spot-track{width:80px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;flex-shrink:0}
+    .eb-spot-fill{height:100%;width:80%;background:linear-gradient(90deg,#F9C8DA,#fff);border-radius:2px}
+    .eb-cta-link{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0A0A0A;background:var(--rose);padding:7px 18px;border-radius:6px;text-decoration:none;font-family:var(--sans);white-space:nowrap}
+    @media(max-width:600px){.eb-grid{grid-template-columns:1fr}.eb-col{padding:12px 14px}}
+
+    /* ── Nav ── */
+    nav{background:rgba(10,10,10,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:sticky;top:0;z-index:100;padding:13px 28px;border-bottom:1px solid rgba(255,255,255,.07)}
+    nav .content-wrap{display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:var(--display);font-size:18px;font-weight:600;font-style:normal;letter-spacing:.18em;text-transform:uppercase;line-height:1}
+    .nav-sub{font-size:11px;color:var(--ink3);font-weight:400;margin-top:2px;letter-spacing:.04em}
+    .nav-spots{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;background:rgba(255,26,126,.15);border:1px solid rgba(255,26,126,.35);color:rgba(255,255,255,.85);padding:7px 16px;border-radius:999px}
+    .spot-dot{width:7px;height:7px;border-radius:50%;background:var(--rose);display:inline-block;animation:blink 2s infinite;flex-shrink:0}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* ── Ribbon SVG ── */
+    .bg-ribbon{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;overflow:hidden;will-change:transform}
+    .bg-ribbon svg{width:100%;height:100%;position:absolute;top:0;left:0}
+
+    /* ── Типографічні водяні знаки ── */
+    .bg-word{position:absolute;z-index:-1;pointer-events:none;user-select:none;
+      font-family:var(--display);font-weight:700;font-style:italic;
+      color:rgba(255,26,126,.08);white-space:nowrap;line-height:1;
+      will-change:transform;letter-spacing:-.03em}
+    .bw1{font-size:clamp(80px,18vw,190px);top:18%;right:-2vw}
+    .bw2{font-size:clamp(100px,22vw,240px);top:50%;left:-1vw}
+    .bw3{font-size:clamp(70px,16vw,170px);top:76%;right:2vw}
+    @media(max-width:600px){
+      .bg-word{opacity:.6}
+      .bw1{font-size:clamp(60px,22vw,110px)}
+      .bw2{font-size:clamp(80px,26vw,140px)}
+      .bw3{font-size:clamp(55px,20vw,100px)}
+    }
+    @media(prefers-reduced-motion:reduce){.bg-ribbon,.bg-word{transform:none!important}}
+
+    /* ── Hero ── */
+    /* radial-gradient залишається як poster-fallback поки відео вантажиться */
+    .hero-section{position:relative;padding:60px 28px 72px;overflow:hidden;min-height:560px;background:radial-gradient(ellipse 85% 65% at 62% 42%,#2A0015 0%,#1A000D 45%,#0A0A0A 100%)}
+
+    /* Вінєтка через inset box-shadow — рівномірно розчиняє краї відео */
+    .hero-section::before{content:'';position:absolute;inset:0;z-index:4;pointer-events:none;
+      box-shadow:inset 0 0 140px 70px #0A0A0A}
+    /* Fade hero-відео в глобальний фон (знизу) */
+    .hero-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:260px;
+      background:linear-gradient(to bottom,transparent 0%,#0A0A0A 100%);
+      z-index:3;pointer-events:none}
+
+    /* ── Hero video ── */
+    .hero-video{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);object-fit:cover;object-position:80% center;z-index:0;pointer-events:none}
+    /* Рожевий градієнтний overlay: щільніший зліва (текст), прозоріший справа (deco) */
+    .hero-video-overlay{display:none}
+    /* Glow-кулі поверх overlay */
+    .hero-glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:1}
+    .hg1{width:360px;height:280px;background:rgba(255,26,126,.6);opacity:.35;top:-60px;right:-40px}
+    .hg2{width:260px;height:220px;background:rgba(255,26,126,.5);opacity:.25;bottom:20px;right:60px;animation:gfloat 8s ease-in-out infinite}
+    .hg3{width:180px;height:180px;background:rgba(255,77,155,.4);opacity:.3;top:100px;left:-40px;animation:gfloat 11s ease-in-out infinite .5s}
+    @keyframes gfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+    /* Накриває вотермарку відеофайлу шаховою фігурою */
+    .hero-wm-cover{position:absolute;right:3%;bottom:10%;z-index:5;pointer-events:none;
+      font-size:88px;line-height:1;color:rgba(255,26,126,.75);
+      text-shadow:0 0 28px rgba(255,26,126,.4)}
+
+    /* Мобільні пристрої: приховати відео, poster-градієнт залишається як фон */
+    @media(max-width:600px){.hero-video{display:none}}
+    /* prefers-reduced-motion: прибрати відео, зупинити glow-анімації */
+    @media(prefers-reduced-motion:reduce){
+      .hero-video{display:none}
+      .hg2,.hg3{animation:none}
+    }
+
+    /* Hero pills */
+    .hero-pills{display:flex;justify-content:space-between;margin-bottom:44px;position:relative;z-index:10}
+    .hero-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:8px 18px 8px 12px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;gap:10px}
+    .hp-date{font-family:var(--display);font-size:26px;font-weight:700;color:#FFFFFF;line-height:1;letter-spacing:.04em}
+    .hp-info{display:flex;flex-direction:column;gap:1px}
+    .hp-main{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rose);line-height:1.2}
+    .hp-sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.04em}
+
+    /* Hero layout */
+    .hero-inner{position:relative;z-index:10;max-width:520px}
+    .hero-text{}
+    .hero-eyebrow{font-family:var(--sans);font-size:11px;font-style:normal;font-weight:400;color:var(--rose);margin-bottom:14px;display:block;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.9)}
+    h1.hero-title{font-family:var(--display);font-size:clamp(62px,11vw,100px);font-weight:700;font-style:normal;color:#FFFFFF;line-height:.92;letter-spacing:.02em;text-transform:uppercase;margin-bottom:16px;text-shadow:0 2px 40px rgba(0,0,0,.9),0 0 80px rgba(0,0,0,.7)}
+    .hero-chess{font-family:var(--sans);font-size:clamp(14px,2vw,17px);font-style:normal;font-weight:300;color:var(--ink2);margin-bottom:18px;line-height:1.6;letter-spacing:.04em;text-shadow:0 1px 20px rgba(0,0,0,.9)}
+    .hero-body{font-size:14px;color:var(--ink3);line-height:1.7;max-width:320px;margin-bottom:28px;text-shadow:0 1px 16px rgba(0,0,0,.95)}
+    .price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+    .price-eb{font-family:var(--display);font-size:clamp(36px,6vw,56px);font-weight:700;background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.02em;line-height:1;text-shadow:none}
+    .price-orig{font-size:20px;color:rgba(255,255,255,.35);text-decoration:line-through}
+    .price-note{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:28px}
+    /* Installment plan visual */
+
+
+    /* Buttons */
+    .hero-btns{display:flex;flex-direction:column;gap:10px;margin-bottom:0;max-width:340px}
+    .btn-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--rose);color:#fff;border:1.5px solid var(--rose);padding:16px 32px;font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:background .2s,transform .15s;text-decoration:none;width:100%}
+    .btn-cta:hover{background:var(--rose-h);border-color:var(--rose-h);transform:translateY(-2px)}
+    .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:transparent;color:rgba(255,255,255,.6);border:none;padding:6px 0;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:.02em;transition:color .2s}
+    .btn-ghost:hover{color:#FFFFFF}
+
+    /* Hero stat chips */
+    .hero-stats{display:flex;align-items:center;gap:0;margin-top:24px;position:relative;z-index:10;
+      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border-radius:12px;
+      max-width:340px;overflow:hidden}
+    .hero-stat{display:flex;align-items:center;gap:10px;padding:14px 18px;flex:1}
+    .hero-stat+.hero-stat{border-left:1px solid rgba(255,255,255,.15)}
+    .hero-stat-pip{width:6px;height:6px;border-radius:50%;background:var(--rose);flex-shrink:0;margin-top:3px}
+    .hero-stat-val{font-size:12px;font-weight:700;color:#FFFFFF;line-height:1.25;font-family:var(--sans)}
+    .hero-stat-key{font-size:11px;color:rgba(255,255,255,.65);line-height:1.3;font-family:var(--sans)}
+
+    /* ── Urgency strip ── */
+    .urgency-strip{background:rgba(255,26,126,.12);border-top:1px solid rgba(255,26,126,.2);border-bottom:1px solid rgba(255,26,126,.2);color:rgba(255,255,255,.8);padding:18px 28px;text-align:center;font-size:14px;line-height:1.5}
+    .urgency-strip em{color:var(--rose);font-style:normal;font-weight:700}
+
+    /* ── Sections ── */
+    section{padding:86px 28px;background:transparent}
+    section>.content-wrap{padding:0}
+    /* Glass-поверхні для складних блоків */
+    section.s-glass{background:rgba(255,255,255,.03);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    @media(max-width:600px){section.s-glass{background:rgba(255,255,255,.04);backdrop-filter:none;-webkit-backdrop-filter:none}}
+    .section-eyebrow{font-family:var(--sans);display:block;font-size:10px;font-style:normal;font-weight:500;color:var(--rose);margin-bottom:12px;letter-spacing:.24em;text-transform:uppercase;text-align:center}
+    h2.sec-title{font-family:var(--display);font-size:clamp(32px,6vw,58px);font-weight:700;font-style:normal;color:#FFFFFF;line-height:.96;letter-spacing:.02em;text-transform:uppercase;margin-bottom:14px;text-align:center}
+    .sec-sub{font-size:14px;color:var(--ink3);font-weight:400;text-align:center}
+
+    /* ── Pain ── */
+    .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
+    .pain-card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px;padding:28px 22px;border:1px solid rgba(255,255,255,.08)}
+    .pain-q-mark{font-family:var(--display);font-size:72px;color:rgba(255,26,126,.3);line-height:.75;display:block;margin-bottom:6px}
+    .pain-quote{font-style:italic;font-size:14px;color:rgba(255,255,255,.72);line-height:1.6;margin-bottom:16px}
+    .pain-who{font-size:11px;color:var(--rose);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+
+    /* ── Pivot strip ── */
+    .pivot-strip{background:linear-gradient(160deg,rgba(255,26,126,.18) 0%,rgba(10,10,10,1) 100%);border-top:1px solid rgba(255,26,126,.15);border-bottom:1px solid rgba(255,26,126,.15);padding:64px 28px;text-align:center;position:relative;overflow:hidden}
+    .pivot-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--display);font-size:clamp(60px,16vw,130px);color:rgba(255,26,126,.06);white-space:nowrap;pointer-events:none;user-select:none;letter-spacing:.04em}
+    .pivot-ribbon{position:absolute;bottom:-20px;left:-40px;right:-40px;height:100px;opacity:.15;transform:rotate(-2deg);pointer-events:none}
+    .pivot-content{position:relative;z-index:2}
+    .pivot-icon{font-size:32px;color:rgba(255,26,126,.6);margin-bottom:12px;display:block}
+    .pivot-strip p{font-family:var(--display);font-size:clamp(28px,6vw,54px);font-weight:700;font-style:normal;color:#FFFFFF;letter-spacing:.03em;text-transform:uppercase;line-height:1}
+
+    /* ── Calculator ── */
+    .calc-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:36px;margin-top:32px}
+    .calc-row{margin-bottom:24px}
+    .calc-label{display:flex;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.6);margin-bottom:10px}
+    .calc-val{color:var(--rose);font-weight:700}
+    input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:rgba(255,255,255,.12);border-radius:2px;outline:none}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--rose);cursor:pointer;border:3px solid #141414;box-shadow:0 2px 8px rgba(255,26,126,.4)}
+    /* ── Calculator result redesign ── */
+    .calc-result{margin-top:8px;display:grid;grid-template-columns:1fr 48px 1fr;border-radius:16px;overflow:hidden}
+    .cr-col{padding:28px 28px 32px}
+    .cr-before{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:16px 0 0 16px}
+    .cr-after{background:linear-gradient(145deg,#E8006A 0%,#FF1A7E 55%,#FF4D9B 100%);border-radius:0 16px 16px 0}
+    .cr-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:22px}
+    .cr-after .cr-label{color:rgba(255,255,255,.6)}
+    .cr-row{margin-bottom:4px}
+    .cr-num{font-family:var(--display);font-size:clamp(26px,3.8vw,38px);font-weight:700;color:#FFFFFF;line-height:1;letter-spacing:.01em}
+    .cr-before .cr-num{color:rgba(255,255,255,.55)}
+    .cr-key{font-size:12px;color:rgba(255,255,255,.35);margin-top:4px;line-height:1.3}
+    .cr-after .cr-key{color:rgba(255,255,255,.7)}
+    .cr-sep{height:1px;background:rgba(255,255,255,.07);margin:18px 0}
+    .cr-sep-light{background:rgba(255,255,255,.18)}
+    /* VS divider */
+    .cr-vs{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:0 4px}
+    .cr-vs-line{flex:1;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,26,126,.3),transparent)}
+    .cr-vs-badge{font-size:14px;color:var(--rose);font-weight:700;padding:6px 0;flex-shrink:0}
+    /* keep JS hooks */
+    .res-big{font-family:var(--display);letter-spacing:.01em}
+    .res-verdict{padding:16px 22px;grid-column:1/-1;border-top:1px solid rgba(255,255,255,.06)}
+    .res-verdict p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
+    .res-verdict strong{color:var(--rose)}
+    @media(max-width:600px){
+      .calc-result{grid-template-columns:1fr;gap:2px}
+      .cr-before{border-radius:16px 16px 0 0}
+      .cr-after{border-radius:0 0 16px 16px}
+      .cr-vs{flex-direction:row;height:36px;padding:0 16px}
+      .cr-vs-line{flex:1;height:1px;width:auto;background:linear-gradient(to right,transparent,rgba(255,26,126,.3),transparent)}
+    }
+
+    /* ── Proof strip ── */
+    .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);background:var(--rose)}
+    .proof-item{padding:40px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.15)}
+    .proof-item:last-child{border-right:none}
+    .proof-num{font-family:var(--display);font-size:clamp(22px,4vw,36px);font-weight:700;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:.02em;text-transform:uppercase}
+    .proof-desc{font-size:13px;color:rgba(255,255,255,.78);line-height:1.45}
+
+    /* ── Outcome ── */
+    .outcome-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
+    .outcome-card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px;padding:28px 22px;border:1px solid rgba(255,255,255,.08)}
+    .outcome-week{font-size:11px;color:var(--rose);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+    .outcome-title{font-size:16px;font-weight:700;color:#FFFFFF;line-height:1.3;margin-bottom:10px}
+    .outcome-body{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
+    .outcome-card:last-child{background:linear-gradient(135deg,rgba(255,26,126,.3),rgba(255,26,126,.15));border-color:rgba(255,26,126,.25)}
+    .outcome-card:last-child .outcome-week{color:rgba(255,255,255,.65)}
+    .outcome-card:last-child .outcome-title{color:#fff}
+    .outcome-card:last-child .outcome-body{color:rgba(255,255,255,.72)}
+
+    /* ── Program Roadmap ── */
+    .roadmap{margin-top:48px;position:relative}
+    .roadmap-start-label{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+    .roadmap-start-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0}
+    .roadmap-start-text{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+    .roadmap-steps-wrap{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;align-items:start;gap:0;position:relative}
+    /* дотяшна лінія через усі кружки */
+    .roadmap-steps-wrap::before{content:'';position:absolute;top:29px;left:29px;right:29px;height:2px;
+      background:repeating-linear-gradient(90deg,rgba(255,26,126,.2) 0,rgba(255,26,126,.2) 10px,transparent 10px,transparent 20px);
+      z-index:0;pointer-events:none}
+    .roadmap-node{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+    .roadmap-circle{width:58px;height:58px;border-radius:50%;background:var(--rose);color:#fff;font-family:var(--display);font-size:26px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative;z-index:2;
+      box-shadow:0 0 0 5px rgba(255,26,126,.12),0 0 0 10px rgba(255,26,126,.05)}
+    .roadmap-node:first-child .roadmap-circle{background:rgba(255,26,126,.8)}
+    .roadmap-node:last-child .roadmap-circle{background:#CC0060}
+    .roadmap-week{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,26,126,.8);margin-bottom:10px;text-align:center}
+    .roadmap-card{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:22px 20px;width:100%;border:1px solid rgba(255,255,255,.08);border-top:3px solid var(--rose)}
+    .roadmap-node:first-child .roadmap-card{border-top-color:rgba(255,26,126,.8)}
+    .roadmap-node:last-child .roadmap-card{border-top-color:#CC0060}
+    .roadmap-tag{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);margin-bottom:6px}
+    .roadmap-name{font-family:var(--display);font-size:clamp(16px,2vw,22px);font-weight:600;font-style:normal;color:#FFFFFF;margin-bottom:14px;letter-spacing:.02em;text-transform:uppercase;line-height:1.1}
+    .roadmap-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+    .roadmap-list li{font-size:13px;color:rgba(255,255,255,.6);padding-left:16px;position:relative;line-height:1.5}
+    .roadmap-list li::before{content:'—';position:absolute;left:0;color:var(--rose);font-weight:600}
+    /* стрілка-конектор між кроками */
+    .roadmap-connector{display:flex;align-items:flex-start;justify-content:center;padding-top:24px;color:rgba(255,26,126,.3);font-size:24px;line-height:1}
+    /* фінальний бейдж */
+    .roadmap-finish{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;padding:16px 28px;background:linear-gradient(135deg,var(--rose-deep) 0%,var(--rose) 100%);border-radius:12px;max-width:400px;margin-left:auto;margin-right:auto}
+    .roadmap-finish-icon{font-size:24px;color:#F9C8DA;flex-shrink:0}
+    .roadmap-finish-title{font-family:var(--display);font-size:clamp(18px,2.4vw,28px);font-weight:700;font-style:normal;color:#fff;line-height:1;letter-spacing:.04em;text-transform:uppercase}
+    .roadmap-finish-sub{font-size:11px;color:rgba(249,200,218,.75);margin-top:2px}
+    @media(max-width:720px){
+      .roadmap-steps-wrap{grid-template-columns:1fr;gap:0}
+      .roadmap-steps-wrap::before{display:none}
+      .roadmap-connector{padding-top:0;padding-bottom:6px;font-size:18px}
+      .roadmap-node{align-items:flex-start;flex-direction:row;gap:14px}
+      .roadmap-circle{width:48px;height:48px;font-size:20px;margin-bottom:0;flex-shrink:0}
+      .roadmap-week{text-align:left;margin-bottom:6px}
+      .roadmap-card{padding:16px}
+    }
+
+    /* ── Founding ── */
+    .founding-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
+    .founding-card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px;padding:32px 24px;border:1px solid rgba(255,255,255,.08)}
+    .founding-icon{font-size:26px;margin-bottom:16px;color:var(--rose);display:block}
+    .founding-title{font-size:16px;font-weight:700;color:#FFFFFF;margin-bottom:10px;line-height:1.3}
+    .founding-body{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
+
+    /* ── Bonuses bento ── */
+    .bonus-bento{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px;margin-top:40px}
+    .bonus-card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px;position:relative;border:1px solid rgba(255,255,255,.08)}
+    /* top row — compact */
+    .bonus-card.b1,.bonus-card.b2{padding:20px 20px;grid-row:1}
+    .bonus-num{font-size:10px;color:var(--rose);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+    .bonus-title{font-size:14px;font-weight:700;color:#FFFFFF;margin-bottom:6px;line-height:1.3}
+    .bonus-body{font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
+    /* bottom row — larger, colored */
+    .bonus-card.b3,.bonus-card.b4{padding:28px 26px;grid-row:2;overflow:hidden}
+    .bonus-card.b3{background:linear-gradient(140deg,rgba(255,26,126,.5) 0%,rgba(255,26,126,.25) 100%);border-color:rgba(255,26,126,.3)}
+    .bonus-card.b4{background:linear-gradient(140deg,#0A0A0A 0%,rgba(255,26,126,.15) 100%);border-color:rgba(255,26,126,.2)}
+    .bonus-card.b3 .bonus-num,.bonus-card.b4 .bonus-num{color:rgba(249,200,218,.75)}
+    .bonus-card.b3 .bonus-title,.bonus-card.b4 .bonus-title{font-size:clamp(17px,2vw,22px);color:#fff}
+    .bonus-card.b3 .bonus-body,.bonus-card.b4 .bonus-body{font-size:13px;color:rgba(255,255,255,.72)}
+    .bonus-star{position:absolute;top:16px;right:16px;background:rgba(249,200,218,.18);border:1px solid rgba(249,200,218,.4);color:#F9C8DA;font-size:10px;font-weight:700;padding:4px 12px;letter-spacing:.08em;border-radius:999px}
+    .b3-glow1{position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none}
+    .b3-glow2{position:absolute;bottom:-40px;left:10px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+    .b3-inner{position:relative;z-index:1}
+    .b4-cta{display:inline-block;margin-top:16px;font-size:11px;color:#F9C8DA;font-weight:700;letter-spacing:.06em;border:1px solid rgba(249,200,218,.35);padding:8px 18px;border-radius:8px;text-decoration:none}
+    .b4-cta:hover{background:rgba(249,200,218,.1)}
+    @media(max-width:600px){
+      .bonus-bento{grid-template-columns:1fr}
+      .bonus-card.b1,.bonus-card.b2{grid-row:auto}
+      .bonus-card.b3,.bonus-card.b4{grid-row:auto}
+    }
+
+    /* ── CTA Section ── */
+    .cta-section{background:linear-gradient(160deg,rgba(255,26,126,.14) 0%,#0A0A0A 60%);padding:86px 28px}
+    .cta-label{font-family:var(--sans);display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(249,200,218,.75);font-weight:400;margin-bottom:12px;text-align:center}
+    .cta-main-title{font-family:var(--display);font-size:clamp(34px,7vw,64px);font-weight:700;font-style:normal;color:#fff;line-height:.96;letter-spacing:.03em;text-transform:uppercase;margin-bottom:14px;text-align:center}
+    .cta-sub{font-size:15px;color:rgba(255,255,255,.7);text-align:center}
+    .cta-prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;margin-bottom:28px}
+    .cta-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:28px 22px;border-radius:18px}
+    .cta-card.hero{background:rgba(255,26,126,.1);border-color:rgba(255,26,126,.3);border-top:3px solid var(--rose)}
+    .cta-tier{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:700;margin-bottom:12px}
+    .cta-card.hero .cta-tier{color:var(--rose)}
+    .cta-price{font-family:var(--display);font-size:clamp(28px,4.5vw,42px);font-weight:700;color:#fff;line-height:1;margin-bottom:6px;letter-spacing:.02em}
+    .cta-card.hero .cta-price{color:#fff}
+    .cta-install,.cta-old{font-size:13px;color:rgba(255,255,255,.4)}
+    .cta-card.hero .cta-install,.cta-card.hero .cta-old{color:rgba(255,255,255,.5)}
+    .cta-features{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:6px}
+    .cta-features li{font-size:13px;color:rgba(255,255,255,.65);padding-left:20px;position:relative}
+    .cta-card.hero .cta-features li{color:rgba(255,255,255,.78)}
+    .cta-features li::before{content:'✓';position:absolute;left:0;color:rgba(255,255,255,.3);font-weight:700}
+    .cta-card.hero .cta-features li::before{color:var(--rose)}
+
+    /* Spots */
+    .spots-wrap{margin-bottom:28px}
+    .spots-label{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.7);margin-bottom:10px}
+    .spots-label strong{color:#F9C8DA}
+    .spots-track{background:rgba(255,255,255,.12);height:8px;border-radius:4px;overflow:hidden}
+    .spots-fill{height:100%;background:linear-gradient(90deg,#F9C8DA,#fff);border-radius:4px;width:0;transition:width 1.6s cubic-bezier(.4,0,.2,1)}
+
+    /* Form */
+    .form-wrap{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:32px;margin-bottom:24px;border-radius:16px}
+    .f-label{display:block;font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+    .f-inp{width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.10);color:#FFFFFF;font-family:var(--sans);font-size:16px;padding:14px 16px;margin-bottom:16px;outline:none;transition:border-color .2s,background .2s;border-radius:8px}
+    .f-inp::placeholder{color:rgba(255,255,255,.25)}
+    .f-inp:focus{border-color:var(--rose);background:rgba(255,26,126,.06)}
+    .btn-cta-full{width:100%;background:var(--rose);color:#fff;border:none;padding:18px;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:background .2s,transform .15s}
+    .btn-cta-full:hover{background:var(--rose-h);transform:translateY(-1px)}
+
+    /* Micro guarantee */
+    .micro-g{display:flex;align-items:flex-start;gap:12px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12)}
+    .micro-g svg{flex-shrink:0;margin-top:2px}
+    .micro-g p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.55}
+
+    /* ── Gold accents ── */
+    @keyframes gold-shimmer{
+      0%{background-position:200% center}
+      100%{background-position:-200% center}
+    }
+    /* Logo gold */
+    .nav-logo{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    /* Section eyebrow gold */
+    .section-eyebrow{color:var(--gold-1)!important}
+    /* CTA button shimmer */
+    .btn-cta-full{
+      background:linear-gradient(90deg,#A8832A 0%,#E8C96A 30%,#F5E09A 50%,#E8C96A 70%,#A8832A 100%);
+      background-size:200% auto;
+      animation:gold-shimmer 3.5s linear infinite;
+      color:#3A1020;
+      font-weight:800;
+      letter-spacing:.12em
+    }
+    .btn-cta-full:hover{background-size:200% auto;opacity:.92;transform:translateY(-1px)}
+    /* EB price gold */
+    .eb-price-now{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    /* Hero CTA price gold */
+    .cta-card.hero .cta-price{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    /* CTA card hero top border gold */
+    .cta-card.hero{border-top:3px solid var(--gold-1)}
+    /* Footer brand gold */
+    .footer-brand{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* Footer */
+    footer{background:#080808;border-top:1px solid rgba(255,255,255,.07);padding:44px 28px;text-align:center}
+    .footer-brand{font-family:var(--display);font-size:22px;font-weight:600;font-style:normal;margin-bottom:8px;letter-spacing:.18em;text-transform:uppercase}
+    .footer-tag{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:12px;font-style:italic}
+    .footer-copy{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.06em}
+
+    /* ── Mobile: вимкнути backdrop-filter для продуктивності ── */
+    @media(max-width:600px){
+      .pain-card,.outcome-card,.founding-card,.bonus-card,.roadmap-card{
+        backdrop-filter:none;-webkit-backdrop-filter:none;
+        background:rgba(255,255,255,.06)
+      }
+      body::after{opacity:.018}
+    }
+
+    /* Init state for GSAP — set via JS so content stays visible if GSAP CDN is blocked */
+    .g-init-hidden{opacity:0;transform:translateY(28px)}
+
+    /* ── Tablet (≤ 860px) ── */
+    @media(max-width:860px){
+      .content-wrap{width:100%}
+      .hero-inner{max-width:100%}
+      .hero-btns,.hero-stats{max-width:100%}
+      h1.hero-title{font-size:clamp(52px,10vw,84px)}
+    }
+
+    /* ── Mobile (≤ 600px) ── */
+    @media(max-width:600px){
+      /* Nav */
+      nav{padding:12px 16px}
+      .nav-sub{display:none}
+      .nav-spots{font-size:11px;padding:6px 12px;gap:6px}
+      .spot-dot{width:6px;height:6px}
+
+      /* Hero */
+      .hero-section{padding:36px 16px 52px;min-height:auto}
+      h1.hero-title{font-size:clamp(44px,12vw,72px)}
+      .hero-chess{font-size:clamp(13px,3.5vw,16px)}
+      .hero-body{font-size:13px;max-width:100%}
+      .price-row{gap:10px}
+      .hero-btns{max-width:100%;gap:8px}
+      .hero-pills{display:none}
+      .hero-stats{max-width:100%;flex-wrap:wrap}
+      .hero-stat{flex:1 1 40%;min-width:120px}
+      .hero-wm-cover{display:none}
+
+      /* EB Banner */
+      .eb-banner{padding:14px 16px}
+      .eb-top{flex-direction:column;align-items:flex-start;gap:8px}
+      .eb-bottom{flex-direction:column;gap:10px;align-items:stretch}
+      .eb-cta-link{display:block;text-align:center;padding:10px 18px}
+      .eb-spots{width:100%;justify-content:space-between}
+      .eb-spot-track{flex:1;max-width:120px}
+
+      /* Urgency */
+      .urgency-strip{padding:14px 16px;font-size:13px}
+
+      /* Sections */
+      .hero-inner{grid-template-columns:1fr}
+      .hero-deco{display:none}
+      section{padding:52px 16px}
+      .cta-section{padding:52px 16px}
+      h2.sec-title{font-size:clamp(28px,8vw,42px);text-align:left}
+      .section-eyebrow{text-align:left}
+      .sec-sub{text-align:left}
+
+      /* Pain / Outcome / Founding cards */
+      .pain-grid,.outcome-grid,.founding-grid{grid-template-columns:1fr;gap:12px;margin-top:28px}
+
+      /* Roadmap */
+      .roadmap-finish{flex-direction:column;text-align:center;gap:8px;padding:20px 16px}
+
+      /* Pivot */
+      .pivot-strip{padding:48px 16px}
+
+      /* Proof strip */
+      .proof-strip{grid-template-columns:1fr}
+      .proof-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.15);padding:28px 16px}
+
+      /* Calculator */
+      .calc-wrap{padding:20px 16px}
+      .calc-result{grid-template-columns:1fr}
+      .cr-col{padding:20px 18px 24px}
+      .cr-vs{flex-direction:row;height:36px;padding:0 16px}
+      .cr-vs-line{flex:1;height:1px;width:auto;background:linear-gradient(to right,transparent,rgba(255,26,126,.3),transparent)}
+
+      /* Modules */
+      .module{grid-template-columns:1fr}
+      .module-num{display:none}
+
+      /* Bonus bento */
+      .bonus-bento{grid-template-columns:1fr}
+      .bonus-card.b1,.bonus-card.b2{grid-row:auto}
+      .bonus-card.b3,.bonus-card.b4{grid-row:auto;padding:22px 18px}
+
+      /* CTA section */
+      .cta-prices{grid-template-columns:1fr;gap:10px}
+      .cta-card{padding:20px 16px}
+      .cta-price{font-size:clamp(24px,7vw,38px)}
+      .cta-sub{text-align:left;font-size:14px}
+      .cta-main-title{text-align:left}
+      .cta-label{text-align:left}
+
+      /* Form */
+      .form-wrap{padding:20px 16px}
+
+      /* Footer */
+      footer{padding:36px 16px}
+    }
+
+    /* ── Small phones (≤ 380px) ── */
+    @media(max-width:380px){
+      nav{padding:10px 12px}
+      .nav-logo{font-size:16px;letter-spacing:.12em}
+      .nav-spots{display:none}
+      .hero-section{padding:28px 12px 44px}
+      h1.hero-title{font-size:clamp(38px,13vw,58px)}
+      section{padding:44px 12px}
+      .cta-section{padding:44px 12px}
+      .eb-banner{padding:12px}
+      .calc-wrap{padding:16px 12px}
+      .form-wrap{padding:16px 12px}
+      footer{padding:28px 12px}
+    }
+  </style>
+</head>
+<body>
+<div id="lp">
+
+  <!-- ── Шовкова SVG-стрічка ── -->
+  <div class="bg-ribbon" aria-hidden="true">
+    <svg viewBox="0 0 1440 5000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 1580,-60 C 1100,320 180,520 -140,980 C -460,1440 1640,1800 1500,2260 C 1360,2720 -180,3080 120,3580 C 420,4080 1480,4200 1580,5060"
+            stroke="rgba(201,168,76,.07)" stroke-width="260" fill="none" stroke-linecap="round"/>
+      <path d="M -160,200 C 300,680 1360,820 1600,1340 C 1840,1860 -80,2340 200,2800 C 480,3260 1520,3440 1400,4100"
+            stroke="rgba(255,26,126,.04)" stroke-width="180" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Типографічні водяні знаки ── -->
+  <div class="bg-words" aria-hidden="true">
+    <span class="bg-word bw1">БРЕНД</span>
+    <span class="bg-word bw2">ШІ</span>
+    <span class="bg-word bw3">СТИЛЬ</span>
+  </div>
+
+  <nav>
+    <div class="content-wrap">
+      <div>
+        <div class="nav-logo">Твій Хід</div>
+        <div class="nav-sub">ШІ для б'юті-майстрів</div>
+      </div>
+      <div class="nav-spots">
+        <span class="spot-dot"></span>
+        <span>8 з 10 місць</span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section" style="padding-left:0;padding-right:0">
+    <!--
+      Відео: покласти файл поруч із HTML або в підпапку video/.
+      Десктоп: повний файл. Мобіль: CSS display:none — видно тільки poster-градієнт.
+      poster= — статичний кадр або окремий .jpg (необов'язково, градієнт секції слугує fallback).
+    -->
+    <!-- Накриває вотермарку відеофайлу -->
+    <div class="hero-wm-cover" aria-hidden="true">♟</div>
+
+    <video
+      id="hero-video"
+      class="hero-video"
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="https://res.cloudinary.com/sqgmpstd/video/upload/v1784225199/IMG_2274_ahejlw.mp4" type="video/mp4">
+    </video>
+    <!-- Рожевий градієнтний overlay для читабельності тексту -->
+
+    <div class="hero-glow hg1" aria-hidden="true"></div>
+    <div class="hero-glow hg2" aria-hidden="true"></div>
+    <div class="hero-glow hg3" aria-hidden="true"></div>
+
+    <div class="content-wrap" style="padding:0 28px;position:relative;z-index:10">
+    <div class="hero-pills">
+      <div class="hero-pill">
+        <div class="hp-date">13</div>
+        <div class="hp-info">
+          <span class="hp-main">Жовтня</span>
+          <span class="hp-sub">Старт курсу</span>
+        </div>
+      </div>
+      <div class="hero-pill">
+        <div class="hp-date">3</div>
+        <div class="hp-info">
+          <span class="hp-main">Тижні</span>
+          <span class="hp-sub">Навчання</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-eyebrow">Онлайн-курс для б'юті-майстрів</span>
+        <h1 class="hero-title">Твій<br>Хід</h1>
+        <p class="hero-chess">Конкурентки вже зробили хід. Настав твій.</p>
+        <p class="hero-body">Пиши пости, відповідай клієнткам і заповнюй запис — автоматично. Без коду. Без технічного досвіду. Твоїм голосом.</p>
+        <div class="price-row">
+          <span class="price-eb">4 250 ₴</span>
+          <span class="price-orig">8 500 ₴</span>
+        </div>
+        <div class="hero-btns">
+          <a href="https://t.me/tanya_suharenko" target="_blank" rel="noopener" class="btn-cta">Зробити свій хід</a>
+          <a href="#program" class="btn-ghost">Що всередині →</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-pip"></div>
+            <div>
+              <div class="hero-stat-val">Стратегічний підхід</div>
+              <div class="hero-stat-key">до ШІ в б'юті</div>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-pip"></div>
+            <div>
+              <div class="hero-stat-val">0 навичок</div>
+              <div class="hero-stat-key">потрібно до старту</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div><!-- /content-wrap -->
+  </section>
+
+  <div class="page-body">
+
+  <div class="urgency-strip">
+    Поки ти читаєш це — твоя конкурентка вже публікує пост, <em>написаний ШІ за 30 секунд</em>
+  </div>
+
+  <div class="eb-banner">
+    <div class="content-wrap">
+      <div class="eb-top">
+        <div class="eb-badge">
+          <span class="eb-badge-dot"></span>
+          <span class="eb-badge-text">Перший потік — особливі умови</span>
+        </div>
+        <div class="eb-deadline">⏰ Ціна зростає <strong>13 жовтня 2026</strong></div>
+      </div>
+      <div class="eb-grid">
+        <div class="eb-col">
+          <span class="eb-col-icon">₴</span>
+          <div class="eb-col-title">Ціна, що не повториться</div>
+          <div class="eb-col-sub">Перший потік — найнижча ціна назавжди. Другий потік: 8 500 ₴.</div>
+          <div class="eb-price">
+            <span class="eb-price-now">4 250 ₴</span>
+            <span class="eb-price-old">8 500 ₴</span>
+          </div>
+        </div>
+        <div class="eb-col">
+          <span class="eb-col-icon">◈</span>
+          <div class="eb-col-title">Прямий доступ до автора</div>
+          <div class="eb-col-sub">Питаєш — відповідаю. Налаштовую курс під твою спеціалізацію особисто.</div>
+        </div>
+        <div class="eb-col">
+          <span class="eb-col-icon">→</span>
+          <div class="eb-col-title">Всі оновлення назавжди</div>
+          <div class="eb-col-sub">Курс росте разом з ШІ. Перший потік отримує всі майбутні доповнення безкоштовно.</div>
+        </div>
+      </div>
+      <div class="eb-bottom">
+        <div class="eb-spots">
+          <div class="eb-spot-track"><div class="eb-spot-fill"></div></div>
+          8 з 10 місць зайнято · Залишилось 2
+        </div>
+        <a href="https://t.me/tanya_suharenko" target="_blank" rel="noopener" class="eb-cta-link">Зробити свій хід →</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+   <div class="content-wrap">
+    <span class="section-eyebrow">Впізнаєш себе?</span>
+    <h2 class="sec-title">Ти чула про ШІ.<br>Але все ще на паузі.</h2>
+    <div class="pain-grid">
+      <div class="pain-card g-init">
+        <span class="pain-q-mark">"</span>
+        <p class="pain-quote">Сиджу між клієнтками і думаю — от би хтось написав цей пост за мене. А час іде.</p>
+        <div class="pain-who">Олена, 32 · Майстер нарощування</div>
+      </div>
+      <div class="pain-card g-init">
+        <span class="pain-q-mark">"</span>
+        <p class="pain-quote">Найняла SMM-ника. Він пише не моїм голосом. Клієнтки навіть питають: «Ти ще тут?»</p>
+        <div class="pain-who">Ірина, 34 · Майстер перманентного макіяжу</div>
+      </div>
+      <div class="pain-card g-init">
+        <span class="pain-q-mark">"</span>
+        <p class="pain-quote">Дивлюся, як інші майстри ростуть, і не розумію — де вони беруть стільки часу на контент?</p>
+        <div class="pain-who">Аліна, 23 · Майстер з оформлення брів</div>
+      </div>
+      <div class="pain-card g-init">
+        <span class="pain-q-mark">"</span>
+        <p class="pain-quote">Думала, ШІ — це для програмістів. Але боюся, що вже спізнилася на цей потяг.</p>
+        <div class="pain-who">Наталія, 40 · Майстер масажу</div>
+      </div>
+    </div>
+   </div><!-- /content-wrap -->
+  </section>
+
+  <div class="pivot-strip">
+    <span class="pivot-bg-text">ТВІЙ ХІД</span>
+    <svg class="pivot-ribbon" viewBox="0 0 800 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M-50 70 C 100 10, 250 90, 400 40 S 600 5, 750 55 S 900 30, 950 65" stroke="#F9C8DA" stroke-width="36" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="pivot-content">
+      <span class="pivot-icon">♟</span>
+      <p>Пора зробити свій хід.</p>
+    </div>
+  </div>
+
+  <section class="s-glass">
+   <div class="content-wrap">
+    <span class="section-eyebrow">Калькулятор</span>
+    <h2 class="sec-title g-init">Скільки коштує<br>ця пауза?</h2>
+    <p class="sec-sub g-init">Порахуй час і гроші, які залишаєш на столі щомісяця</p>
+    <div class="calc-wrap g-init">
+      <div class="calc-row">
+        <div class="calc-label"><span>Годин на контент щотижня</span><span class="calc-val" id="v1">4 год</span></div>
+        <input type="range" id="sl1" min="1" max="15" value="4" step="1" oninput="calcUpdate()">
+      </div>
+      <div class="calc-row">
+        <div class="calc-label"><span>Годин на адміністрування щотижня</span><span class="calc-val" id="v2">3 год</span></div>
+        <input type="range" id="sl2" min="1" max="10" value="3" step="1" oninput="calcUpdate()">
+      </div>
+      <div class="calc-row">
+        <div class="calc-label"><span>Твоя ставка за годину, ₴</span><span class="calc-val" id="v3">500 ₴</span></div>
+        <input type="range" id="sl3" min="200" max="2000" value="500" step="50" oninput="calcUpdate()">
+      </div>
+      <div class="calc-result">
+        <div class="cr-col cr-before">
+          <div class="cr-label">Зараз без ШІ</div>
+          <div class="cr-row">
+            <div class="cr-num res-big" id="res-hours">30 год</div>
+            <div class="cr-key">витрачаєш щомісяця</div>
+          </div>
+          <div class="cr-sep"></div>
+          <div class="cr-row">
+            <div class="cr-num res-big" id="res-money">15 000 ₴</div>
+            <div class="cr-key">вартість цього часу</div>
+          </div>
+          <div class="cr-sep"></div>
+          <div class="cr-row">
+            <div class="cr-num res-big" id="res-year">180 000 ₴</div>
+            <div class="cr-key">втрачаєш на рік</div>
+          </div>
+        </div>
+
+        <div class="cr-vs" aria-hidden="true">
+          <div class="cr-vs-line"></div>
+          <span class="cr-vs-badge">→</span>
+          <div class="cr-vs-line"></div>
+        </div>
+
+        <div class="cr-col cr-after">
+          <div class="cr-label">З ШІ після курсу</div>
+          <div class="cr-row">
+            <div class="cr-num">1–2 год</div>
+            <div class="cr-key">замість десятків</div>
+          </div>
+          <div class="cr-sep cr-sep-light"></div>
+          <div class="cr-row">
+            <div class="cr-num" id="res-freed">28 год</div>
+            <div class="cr-key">звільняється щомісяця</div>
+          </div>
+          <div class="cr-sep cr-sep-light"></div>
+          <div class="cr-row">
+            <div class="cr-num res-big" id="res-roi">2 тижні</div>
+            <div class="cr-key">і курс окупиться</div>
+          </div>
+        </div>
+        </div>
+
+        <div class="res-verdict"><p id="res-verdict-text">З ШІ ти витрачатимеш на це <strong>1–2 години</strong> замість 30 год. Звільниш 28 год на місяць — для клієнток або для себе.</p></div>
+
+      </div>
+    </div>
+   </div><!-- /content-wrap -->
+  </section>
+
+  <div class="proof-strip">
+    <div class="proof-item g-init"><div class="proof-num">Тиждень 1</div><div class="proof-desc">перший пост<br>твоїм голосом</div></div>
+    <div class="proof-item g-init"><div class="proof-num">1–2 год</div><div class="proof-desc">на весь місячний<br>контент після курсу</div></div>
+    <div class="proof-item g-init"><div class="proof-num">0 навичок</div><div class="proof-desc">потрібно<br>до старту</div></div>
+  </div>
+
+  <section>
+   <div class="content-wrap">
+    <span class="section-eyebrow">Результат</span>
+    <h2 class="sec-title g-init">Що змінюється<br>після твого ходу</h2>
+    <div class="outcome-grid">
+      <div class="outcome-card g-init">
+        <div class="outcome-week">До кінця тижня 1</div>
+        <div class="outcome-title">Перший пост готовий і звучить як ти</div>
+        <div class="outcome-body">ШІ навчився твоєму голосу. Не шаблонно — як ти. Публікуєш і отримуєш реакцію.</div>
+      </div>
+      <div class="outcome-card g-init">
+        <div class="outcome-week">До кінця тижня 2</div>
+        <div class="outcome-title">Місяць контенту за 2 години</div>
+        <div class="outcome-body">Більше не питаєш "що публікувати". Контент-план готовий наперед — раз і назавжди.</div>
+      </div>
+      <div class="outcome-card g-init">
+        <div class="outcome-week">До кінця тижня 3</div>
+        <div class="outcome-title">Система працює між клієнтками</div>
+        <div class="outcome-body">Автовідповіді, нагадування, follow-up — ШІ займається адмініструванням, поки ти в роботі.</div>
+      </div>
+      <div class="outcome-card g-init">
+        <div class="outcome-week">Після курсу</div>
+        <div class="outcome-title">Ти виглядаєш як бренд</div>
+        <div class="outcome-body">Без SMM-ника. Без агентства. Сама контролюєш свій голос і свою аудиторію.</div>
+      </div>
+    </div>
+   </div><!-- /content-wrap -->
+  </section>
+
+  <section id="program" class="s-glass">
+   <div class="content-wrap">
+    <span class="section-eyebrow">Програма</span>
+    <h2 class="sec-title g-init">Три ходи до результату</h2>
+    <p class="sec-sub g-init">Кожен модуль — один стратегічний крок вперед</p>
+    <div class="roadmap g-init">
+      <div class="roadmap-start-label">
+        <span class="roadmap-start-dot"></span>
+        <span class="roadmap-start-text">Старт · Тиждень 1</span>
+      </div>
+
+      <div class="roadmap-steps-wrap">
+
+        <div class="roadmap-node">
+          <div class="roadmap-circle">01</div>
+          <div class="roadmap-week">Хід перший · Тиждень 1</div>
+          <div class="roadmap-card">
+            <div class="roadmap-tag">Хід перший</div>
+            <div class="roadmap-name">Твій голос у ШІ</div>
+            <ul class="roadmap-list">
+              <li>Навчаєш ChatGPT звучати як ти — не як усі</li>
+              <li>Промпти, що дають результат з першого разу</li>
+              <li>Перший реальний пост вже на 1-му тижні</li>
+              <li>Живий контент, який не виглядає як шаблон</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-connector" aria-hidden="true">→</div>
+
+        <div class="roadmap-node">
+          <div class="roadmap-circle">02</div>
+          <div class="roadmap-week">Хід другий · Тиждень 2</div>
+          <div class="roadmap-card">
+            <div class="roadmap-tag">Хід другий</div>
+            <div class="roadmap-name">Контент без зусиль</div>
+            <ul class="roadmap-list">
+              <li>Місячний контент-план за один вечір</li>
+              <li>Рубрики, теми, підписи — ШІ бере на себе</li>
+              <li>Сторіс, Reels, пости — все з одного джерела</li>
+              <li>Більше не шукаєш ідеї — вони самі приходять</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-connector" aria-hidden="true">→</div>
+
+        <div class="roadmap-node">
+          <div class="roadmap-circle">03</div>
+          <div class="roadmap-week">Хід третій · Тиждень 3</div>
+          <div class="roadmap-card">
+            <div class="roadmap-tag">Хід третій</div>
+            <div class="roadmap-name">Система, що працює сама</div>
+            <ul class="roadmap-list">
+              <li>Автовідповіді на часті питання клієнток</li>
+              <li>Нагадування і follow-up без твоєї участі</li>
+              <li>Запис і адміністрування — між сесіями</li>
+              <li>Сама контролюєш — не залежиш від підрядників</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="roadmap-finish">
+        <div>
+          <div class="roadmap-finish-title">ТИ ВИГЛЯДАЄШ ЯК БРЕНД</div>
+          <div class="roadmap-finish-sub">Без SMM-ника · Своїм голосом · Під власним контролем</div>
+        </div>
+      </div>
+    </div>
+   </div><!-- /content-wrap -->
+  </section>
+
+  <section>
+   <div class="content-wrap">
+    <span class="section-eyebrow">Перший потік</span>
+    <h2 class="sec-title g-init">Ти серед перших —<br>і це важливо</h2>
+    <p class="sec-sub g-init">Перший потік завжди особливий. Ось чому.</p>
+    <div class="founding-grid">
+      <div class="founding-card g-init">
+        <span class="founding-icon">◈</span>
+        <div class="founding-title">Ціна, що не повториться</div>
+        <div class="founding-body">4 250 ₴ — найнижча ціна цього курсу назавжди. Другий потік: 8 500 ₴. Третій — більше.</div>
+      </div>
+      <div class="founding-card g-init">
+        <span class="founding-icon">◈</span>
+        <div class="founding-title">Прямий доступ до автора</div>
+        <div class="founding-body">Перший потік отримує особисту увагу. Питаєш — відповідаю. Налаштовуємо під твою спеціалізацію.</div>
+      </div>
+      <div class="founding-card g-init">
+        <span class="founding-icon">◈</span>
+        <div class="founding-title">Курс росте разом з тобою</div>
+        <div class="founding-body">159 джерел досліджень. Всі майбутні оновлення — назавжди безкоштовно для першого потоку.</div>
+      </div>
+    </div>
+   </div><!-- /content-wrap -->
+  </section>
+
+  <section>
+   <div class="content-wrap">
+    <span class="section-eyebrow">Бонуси при записі</span>
+    <h2 class="sec-title g-init">Твої бонуси —<br>з першого дня</h2>
+    <div class="bonus-bento g-init">
+
+      <div class="bonus-card b1">
+        <div class="bonus-num">Бонус 01</div>
+        <div class="bonus-title">50 готових промптів для б'юті</div>
+        <div class="bonus-body">Під нарощування, броу, масаж, перманент. Підстав своє ім'я — і публікуй. Готово.</div>
+      </div>
+
+      <div class="bonus-card b2">
+        <div class="bonus-num">Бонус 02</div>
+        <div class="bonus-title">Шаблон контент-плану на 30 днів</div>
+        <div class="bonus-body">Заповни один раз — маєш ідеї на весь місяць. Більше не думаєш "що сьогодні постити".</div>
+      </div>
+
+      <div class="bonus-card b3">
+        <div class="b3-glow1" aria-hidden="true"></div>
+        <div class="b3-glow2" aria-hidden="true"></div>
+        <div class="bonus-star">★ ЕКСКЛЮЗИВ</div>
+        <div class="b3-inner">
+          <div class="bonus-num">Бонус 03</div>
+          <div class="bonus-title">AI-агент: твій асистент 24/7</div>
+          <div class="bonus-body">Персональний ШІ, налаштований під твою спеціалізацію. Відповідає на питання, пише пости, допомагає між клієнтками.</div>
+        </div>
+      </div>
+
+      <div class="bonus-card b4">
+        <div class="b3-glow1" aria-hidden="true"></div>
+        <div class="b3-glow2" aria-hidden="true"></div>
+        <div class="b3-inner">
+          <div class="bonus-num">Бонус 04</div>
+          <div class="bonus-title">Закрита спільнота майстрів</div>
+          <div class="bonus-body">Чат, де діляться результатами, задають питання і підтримують одна одну. Без інфошуму.</div>
+          <a href="https://t.me/tanya_suharenko" target="_blank" rel="noopener" class="b4-cta">Доступ з першого дня →</a>
+        </div>
+      </div>
+
+    </div>
+   </div><!-- /content-wrap -->
+  </section>
+
+  <div class="cta-section" id="cta-form">
+   <div class="content-wrap">
+    <span class="cta-label">Запис</span>
+    <h2 class="cta-main-title g-init">Роби хід зараз</h2>
+    <p class="cta-sub g-init">13 жовтня 2026 ціна зростає до 8 500 ₴. Залишилось 2 місця з 10.</p>
+    <div class="cta-prices">
+      <div class="cta-card hero g-init">
+        <div class="cta-tier">Early Bird · Перші 10</div>
+        <div class="cta-price">4 250 ₴</div>
+        <div class="cta-install">або 3 × 1 450 ₴</div>
+        <div class="cta-old">8 500 ₴</div>
+        <ul class="cta-features">
+          <li>Усі 3 модулі курсу</li>
+          <li>4 бонуси при записі</li>
+          <li>Прямий доступ до автора</li>
+          <li>Всі оновлення назавжди</li>
+        </ul>
+      </div>
+      <div class="cta-card g-init">
+        <div class="cta-tier">Повна ціна · Після 13.10</div>
+        <div class="cta-price">8 500 ₴</div>
+        <div class="cta-install">або 3 × 2 900 ₴</div>
+        <div style="height:20px"></div>
+        <ul class="cta-features">
+          <li>Усі 3 модулі курсу</li>
+          <li>4 бонуси при записі</li>
+          <li>Доступ до спільноти</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spots-wrap">
+      <div class="spots-label"><span>Місця в першому потоці</span><strong id="spots-text">8 з 10 зайнято</strong></div>
+      <div class="spots-track"><div class="spots-fill" id="spots-fill"></div></div>
+    </div>
+    <div class="form-wrap g-init">
+      <p style="font-size:13px;color:rgba(255,255,255,.55);margin-bottom:18px;line-height:1.6">Натисни кнопку — і напиши мені в Telegram. Я відповім протягом кількох годин і надішлю деталі для оплати.</p>
+      <a href="https://t.me/tanya_suharenko" target="_blank" rel="noopener" class="btn-cta-full" style="display:block;text-align:center;text-decoration:none">Зробити свій хід →</a>
+    </div>
+    <div class="micro-g">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M10 2L3 5.5V10C3 13.87 6.08 17.5 10 18C13.92 17.5 17 13.87 17 10V5.5L10 2Z" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none"/>
+        <path d="M7 10L9 12L13 8" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p>Гарантія: якщо після 2 модулів не створиш жодного поста за допомогою ШІ — повернемо гроші. Без питань.</p>
+    </div>
+   </div><!-- /content-wrap -->
+  </div>
+
+  <footer>
+   <div class="content-wrap">
+    <div class="footer-brand">Твій Хід</div>
+    <div class="footer-tag">ШІ для б'юті-майстрів · Засновано на 159 наукових джерелах та матеріалах</div>
+    <div class="footer-copy">© 2026 Твій Хід &nbsp;·&nbsp; Онлайн-курс для б'юті-майстрів</div>
+   </div><!-- /content-wrap -->
+  </footer>
+
+  </div><!-- /page-body -->
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const COURSE=4250,WPM=4.3;
+  function calcUpdate(){
+    var h1=+document.getElementById('sl1').value,h2=+document.getElementById('sl2').value,rate=+document.getElementById('sl3').value;
+    document.getElementById('v1').textContent=h1+' год';
+    document.getElementById('v2').textContent=h2+' год';
+    document.getElementById('v3').textContent=rate.toLocaleString('uk-UA')+' ₴';
+    var totalM=Math.round((h1+h2)*WPM),moneyM=Math.round(totalM*rate),moneyY=moneyM*12;
+    var roiW=moneyM>0?Math.ceil(COURSE/(moneyM/WPM)):null;
+    document.getElementById('res-hours').textContent=totalM+' год';
+    document.getElementById('res-money').textContent=moneyM.toLocaleString('uk-UA')+' ₴';
+    document.getElementById('res-year').textContent=moneyY.toLocaleString('uk-UA')+' ₴';
+    if(roiW){var u=roiW===1?'тиждень':roiW<5?'тижні':'тижнів';document.getElementById('res-roi').textContent=roiW+' '+u;}
+    var freed=Math.max(totalM-2,0);
+    document.getElementById('res-freed').textContent=freed+' год';
+    document.getElementById('res-verdict-text').innerHTML='З ШІ ти витрачатимеш на це <strong>1–2 години</strong> замість '+totalM+' год. Звільниш '+freed+' год на місяць — для клієнток або для себе.';
+  }
+  calcUpdate();
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Початковий стан для scroll-reveal елементів
+  gsap.set('.g-init', {opacity:0, y:28});
+
+  // ── prefers-reduced-motion ────────────────────────────────────────
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Hero video ────────────────────────────────────────────────────
+  var hv = document.getElementById('hero-video');
+  if (hv) {
+    if (reducedMotion) {
+      // prefers-reduced-motion: відео не запускається взагалі
+      hv.pause();
+    } else {
+      // Запускаємо відразу як тільки браузер готовий відтворювати
+      // (надійніше ніж HTML-атрибут autoplay на file://)
+      function hvPlay() {
+        hv.play().catch(function() {
+          // Якщо браузер заблокував без жесту — запускаємо після першого кліку
+          document.addEventListener('click', function startOnClick() {
+            hv.play().catch(function(){});
+            document.removeEventListener('click', startOnClick);
+          }, { once: true });
+        });
+      }
+
+      if (hv.readyState >= 3) {
+        // Відео вже достатньо буферизоване
+        hvPlay();
+      } else {
+        hv.addEventListener('canplay', hvPlay, { once: true });
+      }
+
+      // IntersectionObserver: пауза коли hero виходить із viewport
+      var hvObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          hv.play().catch(function(){});
+        } else {
+          hv.pause();
+        }
+      }, { threshold: 0.1 });
+      hvObs.observe(document.querySelector('.hero-section'));
+    }
+  }
+
+  // ── Hero entrance — єдиний GSAP timeline ─────────────────────────
+  // Всі позиції абсолютні (другий параметр): паралельний старт без chain-затримок.
+  // При reducedMotion — елементи просто одразу видимі (немає анімації).
+  if (!reducedMotion) {
+    // Кінематографічний zoom-out відео при відкритті (Ken Burns)
+    gsap.from('#hero-video', {
+      scale: 1.06,
+      duration: 5,
+      ease: 'power1.out',
+      transformOrigin: '60% 50%'
+    });
+
+    var heroTl = gsap.timeline();
+    heroTl
+      // Pills — зʼявляються зверху
+      .from('.hero-pill',
+            {opacity:0, y:-14, duration:.55, stagger:.1, ease:'power2.out'}, 0.1)
+      // Eyebrow
+      .from('.hero-eyebrow',
+            {opacity:0, y:18, duration:.6, ease:'power2.out'}, 0.2)
+      // H1 — головний акцент, power3 для ваги
+      .from('.hero-title',
+            {opacity:0, y:36, duration:.85, ease:'power3.out'}, 0.35)
+      // Підзаголовок
+      .from('.hero-chess',
+            {opacity:0, y:20, duration:.6, ease:'power2.out'}, 0.52)
+      // Тіло тексту
+      .from('.hero-body',
+            {opacity:0, y:16, duration:.55, ease:'power2.out'}, 0.66)
+      // Ціна
+      .from('.price-row,.price-note',
+            {opacity:0, y:14, duration:.55, stagger:.08, ease:'power2.out'}, 0.78)
+      // CTA-кнопки
+      .from('.hero-btns',
+            {opacity:0, y:14, duration:.55, ease:'power2.out'}, 0.9)
+      // Stat chips — зʼявляються останніми знизу
+      .from('.hero-stat',
+            {opacity:0, y:16, duration:.5, stagger:.1, ease:'power2.out'}, 1.05);
+  }
+
+  var batchCfg={onEnter:function(els){gsap.to(els,{opacity:1,y:0,duration:.55,stagger:.08,ease:'power2.out'})},start:'top 88%',once:true};
+  ScrollTrigger.batch('.pain-card',batchCfg);
+  ScrollTrigger.batch('.outcome-card',batchCfg);
+  ScrollTrigger.batch('.bonus-card',batchCfg);
+  ScrollTrigger.batch('.founding-card',batchCfg);
+  ScrollTrigger.batch('.proof-item',batchCfg);
+  ScrollTrigger.batch('.cta-card',batchCfg);
+  var batchSel='.pain-card,.outcome-card,.bonus-card,.founding-card,.proof-item,.cta-card';
+  document.querySelectorAll('.g-init').forEach(function(el){
+    if(!el.matches(batchSel)){
+      gsap.to(el,{opacity:1,y:0,duration:.6,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+    }
+  });
+
+  ScrollTrigger.create({trigger:'#spots-fill',start:'top 80%',once:true,onEnter:function(){document.getElementById('spots-fill').style.width='80%';}});
+
+  // ── Parallax: ribbon + watermarks ────────────────────────────────
+  if (!reducedMotion) {
+    var lpEl = document.getElementById('lp');
+    // Стрічка — рухається повільніше за скрол
+    gsap.to('.bg-ribbon', {
+      y: -380,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: lpEl,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 2
+      }
+    });
+    // Водяні знаки — кожен з різною швидкістю
+    gsap.to('.bw1', {
+      y: -140, ease: 'none',
+      scrollTrigger: { trigger: lpEl, start: 'top top', end: 'bottom bottom', scrub: 3 }
+    });
+    gsap.to('.bw2', {
+      y: -220, ease: 'none',
+      scrollTrigger: { trigger: lpEl, start: 'top top', end: 'bottom bottom', scrub: 1.8 }
+    });
+    gsap.to('.bw3', {
+      y: -90, ease: 'none',
+      scrollTrigger: { trigger: lpEl, start: 'top top', end: 'bottom bottom', scrub: 2.8 }
+    });
+  }
+</script>
+</script>
+</body>
+</html>
